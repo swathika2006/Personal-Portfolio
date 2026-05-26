@@ -3,7 +3,11 @@
 // ============================================
 const express = require('express');
 const cors = require('cors');
+// It is cross orgin resource sharing allows connnection between two different hosts like 3000 and 5000
+
 const helmet = require('helmet');
+// Protection for middleware
+
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const path = require('path');

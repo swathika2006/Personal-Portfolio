@@ -12,6 +12,7 @@ const startServer = async () => {
   try {
     // Connect to database
     await connectDB();
+    
 
     // Start Express server
     app.listen(PORT, () => {
