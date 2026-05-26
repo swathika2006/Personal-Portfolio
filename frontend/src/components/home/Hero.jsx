@@ -78,14 +78,14 @@ const Hero = () => {
               <Button to="/projects" size="lg" icon={<FaArrowRight />}>
                 View Projects
               </Button>
-              <Button
+              <a
                 href="/resume.pdf"
-                variant="outline"
-                size="lg"
-                icon={<FaDownload />}
+                download="Eswari_Swathika_Resume.pdf"
+                className="inline-flex items-center gap-2 px-8 py-3 text-base font-medium rounded-xl border-2 border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-500 hover:text-white transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
               >
+                <FaDownload size={16} />
                 Download Resume
-              </Button>
+              </a>
               <Button to="/contact" variant="ghost" size="lg">
                 Contact Me
               </Button>

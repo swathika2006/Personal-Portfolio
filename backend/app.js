@@ -15,6 +15,7 @@ const projectRoutes = require('./routes/projectRoutes');
 const skillRoutes = require('./routes/skillRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
+const certificationRoutes = require('./routes/certificationRoutes');
 
 const app = express();
 
@@ -61,6 +62,7 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/skills', skillRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/testimonials', testimonialRoutes);
+app.use('/api/certifications', certificationRoutes);
 
 // ---- Health Check ----
 app.get('/api/health', (req, res) => {

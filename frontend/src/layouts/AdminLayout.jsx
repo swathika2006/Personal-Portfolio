@@ -3,14 +3,15 @@
 // ============================================
 import { Navigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FaHome, FaProjectDiagram, FaEnvelope, FaSignOutAlt, FaTachometerAlt } from 'react-icons/fa';
+import { FaHome, FaProjectDiagram, FaEnvelope, FaSignOutAlt, FaTachometerAlt, FaAward } from 'react-icons/fa';
 import Loader from '../components/common/Loader';
 import ThemeToggle from '../components/common/ThemeToggle';
 
 const sidebarLinks = [
-  { name: 'Dashboard', path: '/admin/dashboard', icon: <FaTachometerAlt /> },
-  { name: 'Projects', path: '/admin/projects', icon: <FaProjectDiagram /> },
-  { name: 'Messages', path: '/admin/messages', icon: <FaEnvelope /> },
+  { name: 'Dashboard',       path: '/admin/dashboard',       icon: <FaTachometerAlt /> },
+  { name: 'Projects',        path: '/admin/projects',        icon: <FaProjectDiagram /> },
+  { name: 'Certifications',  path: '/admin/certifications',  icon: <FaAward /> },
+  { name: 'Messages',        path: '/admin/messages',        icon: <FaEnvelope /> },
 ];
 
 const AdminLayout = ({ children }) => {

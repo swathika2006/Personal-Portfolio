@@ -44,7 +44,7 @@ const ContactSection = () => {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-primary-50 dark:bg-primary-950/50 flex items-center justify-center text-primary-500"><FaEnvelope /></div>
-                <div><p className="text-xs text-dark-500 dark:text-dark-400">Email</p><p className="text-sm font-medium dark:text-white">contact@swathika.dev</p></div>
+                <div><p className="text-xs text-dark-500 dark:text-dark-400">Email</p><p className="text-sm font-medium dark:text-white">swathikaneswari@gmail.com</p></div>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-primary-50 dark:bg-primary-950/50 flex items-center justify-center text-primary-500"><FaMapMarkerAlt /></div>

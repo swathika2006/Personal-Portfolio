@@ -15,6 +15,7 @@ import About from './pages/About';
 import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import ProjectDetails from './pages/ProjectDetails';
+import Certifications from './pages/Certifications';
 import Contact from './pages/Contact';
 import Resume from './pages/Resume';
 import NotFound from './pages/NotFound';
@@ -23,6 +24,7 @@ import NotFound from './pages/NotFound';
 import AdminLogin from './pages/admin/AdminLogin';
 import Dashboard from './pages/admin/Dashboard';
 import ManageProjects from './pages/admin/ManageProjects';
+import ManageCertifications from './pages/admin/ManageCertifications';
 import ManageMessages from './pages/admin/ManageMessages';
 
 function App() {
@@ -52,6 +54,7 @@ function App() {
           <Route path="/skills" element={<MainLayout><Skills /></MainLayout>} />
           <Route path="/projects" element={<MainLayout><Projects /></MainLayout>} />
           <Route path="/projects/:id" element={<MainLayout><ProjectDetails /></MainLayout>} />
+          <Route path="/certifications" element={<MainLayout><Certifications /></MainLayout>} />
           <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
           <Route path="/resume" element={<MainLayout><Resume /></MainLayout>} />
 
@@ -59,6 +62,7 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminLayout><Dashboard /></AdminLayout>} />
           <Route path="/admin/projects" element={<AdminLayout><ManageProjects /></AdminLayout>} />
+          <Route path="/admin/certifications" element={<AdminLayout><ManageCertifications /></AdminLayout>} />
           <Route path="/admin/messages" element={<AdminLayout><ManageMessages /></AdminLayout>} />
 
           {/* 404 */}

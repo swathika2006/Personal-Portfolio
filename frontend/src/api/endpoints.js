@@ -46,6 +46,13 @@ export const testimonialAPI = {
   delete: (id) => API.delete(`/testimonials/${id}`),
 };
 
+// ---- Certification Endpoints ----
+export const certificationAPI = {
+  getAll: () => API.get('/certifications'),
+  create: (data) => API.post('/certifications', data),
+  delete: (id) => API.delete(`/certifications/${id}`),
+};
+
 // ---- GitHub API ----
 export const githubAPI = {
   getRepos: (username) =>

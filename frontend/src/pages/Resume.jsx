@@ -11,15 +11,15 @@ const Resume = () => {
     <div className="pt-20">
       <section className="section-container max-w-4xl mx-auto">
         <SectionTitle title="My Resume" subtitle="A summary of my education, experience, and achievements" />
-        <div className="text-center mb-10">
-  <Button
-  href="/resume.pdf"
-    size="lg"
-    icon={<FaDownload />}
-  >
-    Download Resume (PDF)
-  </Button>
-</div>
+        <div className="text-center">
+          <a
+            href="/resume.pdf"
+            download="Eswari_Swathika_Resume.pdf"
+            className="inline-flex items-center gap-2 px-8 py-3 text-base font-medium rounded-xl bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 transition-all duration-200 shadow-lg shadow-primary-500/25 hover:scale-[1.02]"
+          >
+            <FaDownload size={16} /> Download Resume (PDF)
+          </a>
+        </div>
 
         <div className="space-y-10">
           {/* Education */}
