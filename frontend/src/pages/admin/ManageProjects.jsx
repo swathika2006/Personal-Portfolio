@@ -37,7 +37,11 @@ const ManageProjects = () => {
       if (editing) { await projectAPI.update(editing, fd); toast.success('Project updated!'); }
       else { await projectAPI.create(fd); toast.success('Project created!'); }
       setShowModal(false); fetchProjects();
-    } catch (err) { toast.error(err.response?.data?.message || 'Failed to save'); }
+    } catch (err) { 
+      console.error("Full Error Details:", err);
+      const msg = err.response?.data?.message || err.response?.data || err.message || 'Failed to save';
+      toast.error(typeof msg === 'string' ? msg : JSON.stringify(msg));
+    }
     finally { setLoading(false); }
   };
 

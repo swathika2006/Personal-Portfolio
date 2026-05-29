@@ -9,44 +9,10 @@ import SectionTitle from '../common/SectionTitle';
 import Button from '../common/Button';
 import { projectAPI } from '../../api/endpoints';
 
-// const fallbackProjects = [
-//   { _id: '1', title: 'E-Commerce Platform', description: 'A full-stack e-commerce platform with payment integration and admin dashboard.', category: 'fullstack', technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'], githubLink: '#', liveLink: '#' },
-//   { _id: '2', title: 'Task Management App', description: 'Collaborative task management with real-time updates and kanban boards.', category: 'fullstack', technologies: ['React', 'Socket.io', 'MongoDB', 'Redux'], githubLink: '#', liveLink: '#' },
-//   { _id: '3', title: 'Weather Dashboard', description: 'Interactive weather dashboard with 7-day forecasts and location search.', category: 'frontend', technologies: ['React', 'OpenWeather API', 'Chart.js'], githubLink: '#', liveLink: '#' },
-// ];
-
-const fallbackProjects = [
-  { 
-    _id: '1', 
-    title: 'Forever E-Commerce', 
-    description: 'A full-stack MERN e-commerce platform featuring a modern UI, product management, and seamless checkout experience.', 
-    category: 'fullstack', 
-    technologies: ['MongoDB', 'Express', 'React', 'Node.js'], 
-    githubLink: 'https://github.com/swathika2006/mern-project', 
-    liveLink: 'https://forever-frontend-amber-one.vercel.app/' 
-  },
-  { 
-    _id: '2', 
-    title: 'Task Management App', 
-    description: 'Collaborative task management with real-time updates and kanban boards.', 
-    category: 'fullstack', 
-    technologies: ['React', 'Socket.io', 'MongoDB', 'Redux'], 
-    githubLink: '#', 
-    liveLink: '#' 
-  },
-  { 
-    _id: '3', 
-    title: 'Weather Dashboard', 
-    description: 'Interactive weather dashboard with 7-day forecasts and location search.', 
-    category: 'frontend', 
-    technologies: ['React', 'OpenWeather API', 'Chart.js'], 
-    githubLink: '#', 
-    liveLink: '#' 
-  },
-];
+// Removed hardcoded fallback projects to ensure UI reflects MongoDB database only
 
 const FeaturedProjects = () => {
-  const [projects, setProjects] = useState(fallbackProjects);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     projectAPI.getAll({ featured: true }).then(r => {
@@ -63,9 +29,17 @@ const FeaturedProjects = () => {
             whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
             className="glass-card overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-            {/* Image placeholder */}
+            {/* Image Rendering */}
             <div className="h-48 bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center relative overflow-hidden">
-              <div className="text-4xl font-heading font-bold gradient-text">{project.title.charAt(0)}</div>
+              {project.image && project.image !== 'default-project.png' ? (
+                <img 
+                  src={project.image.startsWith('http') ? project.image : `/uploads/${project.image}`} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover" 
+                />
+              ) : (
+                <div className="text-4xl font-heading font-bold gradient-text">{project.title ? project.title.charAt(0) : 'P'}</div>
+              )}
               <div className="absolute inset-0 bg-dark-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                 {project.githubLink && (
                   <a href={project.githubLink} target="_blank" rel="noopener noreferrer"

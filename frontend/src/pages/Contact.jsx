@@ -89,7 +89,7 @@ import { FaPaperPlane, FaMapMarkerAlt, FaEnvelope, FaGithub, FaLinkedin } from '
 import toast from 'react-hot-toast';
 import SectionTitle from '../components/common/SectionTitle';
 import emailjs from '@emailjs/browser'; // Import EmailJS
-
+import { messageAPI } from '../api/endpoints'; // Added to save to MongoDB
 const Contact = () => {
   const formRef = useRef(); // Create a reference for the form
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -113,6 +113,10 @@ const Contact = () => {
     const PUBLIC_KEY = "vcU2IKkfp4gIdjJKA";
 
     try {
+      // 1. Save to MongoDB so it shows up in the Admin Panel
+      await messageAPI.send(form);
+
+      // 2. Send via EmailJS
       await emailjs.sendForm(
         SERVICE_ID,
         TEMPLATE_ID,

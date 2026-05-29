@@ -203,7 +203,11 @@ const Projects = () => {
                   className="glass-card overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                   <div className="h-48 bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center relative overflow-hidden">
                     {project.image && project.image !== 'default-project.png' ? (
-                      <img src={`/uploads/${project.image}`} alt={project.title} className="w-full h-full object-cover" />
+                      <img 
+                        src={project.image.startsWith('http') ? project.image : `/uploads/${project.image}`} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover" 
+                      />
                     ) : (
                       <div className="text-5xl font-heading font-bold gradient-text">{project.title ? project.title.charAt(0) : 'P'}</div>
                     )}

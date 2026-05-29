@@ -20,6 +20,7 @@ const skillRoutes = require('./routes/skillRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
 const certificationRoutes = require('./routes/certificationRoutes');
+const analyticsRoutes = require('./routes/analyticsRoutes');
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.use('/api/skills', skillRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/certifications', certificationRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // ---- Health Check ----
 app.get('/api/health', (req, res) => {

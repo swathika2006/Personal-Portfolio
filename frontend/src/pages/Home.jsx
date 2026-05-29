@@ -8,7 +8,15 @@ import FeaturedProjects from '../components/home/FeaturedProjects';
 import Testimonials from '../components/home/Testimonials';
 import ContactSection from '../components/home/ContactSection';
 
+import { useEffect } from 'react';
+import { analyticsAPI } from '../api/endpoints';
+
 const Home = () => {
+  useEffect(() => {
+    // Increment view count when someone visits the home page
+    analyticsAPI.incrementViews().catch(() => {});
+  }, []);
+
   return (
     <>
       <Hero />

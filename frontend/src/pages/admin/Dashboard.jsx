@@ -4,20 +4,25 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaProjectDiagram, FaEnvelope, FaEye, FaChartLine } from 'react-icons/fa';
-import { projectAPI, messageAPI } from '../../api/endpoints';
+import { projectAPI, messageAPI, analyticsAPI } from '../../api/endpoints';
 
 const Dashboard = () => {
-  const [stats, setStats] = useState({ projects: 0, messages: 0, unread: 0 });
+  const [stats, setStats] = useState({ projects: 0, messages: 0, unread: 0, views: 0 });
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [projRes, msgRes] = await Promise.all([projectAPI.getAll(), messageAPI.getAll()]);
+        const [projRes, msgRes, viewsRes] = await Promise.all([
+          projectAPI.getAll(), 
+          messageAPI.getAll(),
+          analyticsAPI.getViews().catch(() => ({ data: { views: 0 } }))
+        ]);
         const messages = msgRes.data.data;
         setStats({
           projects: projRes.data.count,
           messages: messages.length,
           unread: messages.filter(m => !m.read).length,
+          views: viewsRes.data?.views || 0
         });
       } catch (err) { console.error('Dashboard fetch error:', err); }
     };
@@ -28,7 +33,7 @@ const Dashboard = () => {
     { label: 'Total Projects', value: stats.projects, icon: <FaProjectDiagram />, color: 'from-blue-500 to-cyan-500' },
     { label: 'Total Messages', value: stats.messages, icon: <FaEnvelope />, color: 'from-green-500 to-emerald-500' },
     { label: 'Unread Messages', value: stats.unread, icon: <FaEye />, color: 'from-orange-500 to-amber-500' },
-    { label: 'Visitor Views', value: '—', icon: <FaChartLine />, color: 'from-purple-500 to-violet-500' },
+    { label: 'Visitor Views', value: stats.views, icon: <FaChartLine />, color: 'from-purple-500 to-violet-500' },
   ];
 
   return (

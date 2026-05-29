@@ -53,7 +53,11 @@ const ProjectDetails = () => {
           {/* Image */}
           <div className="rounded-2xl overflow-hidden mb-8 bg-gradient-to-br from-primary-500/10 to-accent-500/10 h-64 md:h-96 flex items-center justify-center">
             {project.image && project.image !== 'default-project.png' ? (
-              <img src={`/uploads/${project.image}`} alt={project.title} className="w-full h-full object-cover" />
+              <img 
+                src={project.image.startsWith('http') ? project.image : `/uploads/${project.image}`} 
+                alt={project.title} 
+                className="w-full h-full object-cover" 
+              />
             ) : (
               <div className="text-8xl font-heading font-bold gradient-text">{project.title.charAt(0)}</div>
             )}

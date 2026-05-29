@@ -53,6 +53,12 @@ export const certificationAPI = {
   delete: (id) => API.delete(`/certifications/${id}`),
 };
 
+// ---- Analytics API ----
+export const analyticsAPI = {
+  getViews: () => API.get('/analytics/views'),
+  incrementViews: () => API.post('/analytics/views'),
+};
+
 // ---- GitHub API ----
 export const githubAPI = {
   getRepos: (username) =>
