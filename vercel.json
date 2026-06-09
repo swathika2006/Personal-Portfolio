@@ -4,7 +4,7 @@
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "config": { "distDir": "frontend/dist" }
     },
     {
       "src": "backend/server.js",
@@ -13,11 +13,11 @@
   ],
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/backend/server.js"
+      "source": "/api/:match*",
+      "destination": "backend/server.js"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api).*)" ,
       "destination": "/frontend/$1"
     }
   ]
