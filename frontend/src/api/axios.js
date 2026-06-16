@@ -5,9 +5,9 @@ import axios from 'axios';
 
 // Create axios instance with base URL from environment
 // - Local dev: uses '/api' (proxied by Vite to localhost:5000)
-// - Production: uses VITE_API_URL pointing to deployed backend
+// - Production: uses exactly your deployed backend URL
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: import.meta.env.PROD ? 'https://personal-portfolio-p55w.vercel.app/api' : '/api',
 });
 
 // Request interceptor — attach JWT token to every request
