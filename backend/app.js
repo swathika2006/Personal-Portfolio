@@ -180,6 +180,9 @@ app.use('/api/certifications', certificationRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
 // ---- Health Check ----
+app.get('/', (req, res) => {
+  res.status(200).send('Personal Portfolio Backend API is running!');
+});
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     success: true,
