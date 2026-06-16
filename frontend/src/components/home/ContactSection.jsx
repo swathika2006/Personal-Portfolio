@@ -1,15 +1,17 @@
 // ============================================
 // Contact Section — Contact form for home page
 // ============================================
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaPaperPlane, FaMapMarkerAlt, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import SectionTitle from '../common/SectionTitle';
 import Button from '../common/Button';
 import { messageAPI } from '../../api/endpoints';
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
+  const formRef = useRef();
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [loading, setLoading] = useState(false);
 
@@ -21,12 +23,29 @@ const ContactSection = () => {
       toast.error('Please fill in all fields'); return;
     }
     setLoading(true);
+
+    // EmailJS Credentials (same as Contact page)
+    const SERVICE_ID = "service_4kjrce4";
+    const TEMPLATE_ID = "template_e38q9t9";
+    const PUBLIC_KEY = "vcU2IKkfp4gIdjJKA";
+
     try {
-      const res = await messageAPI.send(form);
-      toast.success(res.data.message);
+      // 1. Save to MongoDB so it shows up in the Admin Panel
+      await messageAPI.send(form);
+
+      // 2. Send via EmailJS
+      await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY
+      );
+
+      toast.success('Message sent successfully!');
       setForm({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Failed to send message');
+      console.error('EmailJS Error:', err);
+      toast.error('Failed to send message. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -62,7 +81,7 @@ const ContactSection = () => {
         </motion.div>
 
         {/* Contact Form */}
-        <motion.form onSubmit={handleSubmit} initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}
+        <motion.form ref={formRef} onSubmit={handleSubmit} initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }} className="lg:col-span-3 glass-card p-6 md:p-8">
           <div className="grid sm:grid-cols-2 gap-4 mb-4">
             <div>

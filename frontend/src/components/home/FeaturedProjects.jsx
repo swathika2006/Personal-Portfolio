@@ -15,7 +15,7 @@ const FeaturedProjects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    projectAPI.getAll({ featured: true }).then(r => {
+    projectAPI.getAll().then(r => {
       if (r.data.data.length > 0) setProjects(r.data.data.slice(0, 3));
     }).catch(() => {});
   }, []);
