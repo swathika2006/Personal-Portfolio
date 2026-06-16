@@ -9,8 +9,12 @@
   ],
   "rewrites": [
     {
+      "source": "/api/:match*",
+      "destination": "https://personal-portfolio-p55w.vercel.app/api/:match*"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/frontend/$1"
+      "destination": "/frontend/index.html"
     }
   ]
 }
