@@ -121,8 +121,10 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',                        // Local Vite dev server
   'http://localhost:3000',                        // Alternative local port
-  'https://personal-portfolio-lr12.vercel.app'    // Your production Vercel frontend
-];
+  'https://personal-portfolio-lr12.vercel.app',   // Production Vercel frontend
+  'https://swathika.me',                          // Custom domain
+  process.env.CLIENT_URL,                         // Dynamic from env
+].filter(Boolean);
 
 // CORS setup with dynamic checking
 app.use(

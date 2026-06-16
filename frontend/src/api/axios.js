@@ -4,8 +4,10 @@
 import axios from 'axios';
 
 // Create axios instance with base URL from environment
+// - Local dev: uses '/api' (proxied by Vite to localhost:5000)
+// - Production: uses VITE_API_URL pointing to deployed backend
 const API = axios.create({
-  baseURL: '/api', // Hardcoded to use Vite proxy
+  baseURL: import.meta.env.VITE_API_URL || '/api',
 });
 
 // Request interceptor — attach JWT token to every request
