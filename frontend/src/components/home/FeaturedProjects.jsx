@@ -9,7 +9,6 @@ import SectionTitle from '../common/SectionTitle';
 import Button from '../common/Button';
 import { projectAPI } from '../../api/endpoints';
 
-// Removed hardcoded fallback projects to ensure UI reflects MongoDB database only
 
 const FeaturedProjects = () => {
   const [projects, setProjects] = useState([]);

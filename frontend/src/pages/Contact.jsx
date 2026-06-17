@@ -113,8 +113,12 @@ const Contact = () => {
     const PUBLIC_KEY = "vcU2IKkfp4gIdjJKA";
 
     try {
-      // 1. Save to MongoDB so it shows up in the Admin Panel
-      await messageAPI.send(form);
+      // 1. Save to MongoDB so it shows up in the Admin Panel (don't block if it fails)
+      try {
+        await messageAPI.send(form);
+      } catch (backendErr) {
+        console.warn('Backend save failed, but proceeding with email:', backendErr);
+      }
 
       // 2. Send via EmailJS
       await emailjs.sendForm(
